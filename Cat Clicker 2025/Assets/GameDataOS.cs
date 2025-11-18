@@ -1,16 +1,7 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+[CreateAssetMenu(fileName = "GameDataOS", menuName = "ScriptableObjects/Game Data")]
+public class GameDataOS : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Fub stuff
 }
