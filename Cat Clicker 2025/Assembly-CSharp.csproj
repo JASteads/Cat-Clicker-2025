@@ -48,8 +48,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.12f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\SO Classes\GameDataSO.cs" />
     <Compile Include="Assets\FileManager.cs" />
-    <Compile Include="Assets\GameDataOS.cs" />
+    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\ClickSystem.cs" />
+    <Compile Include="Assets\GameStart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

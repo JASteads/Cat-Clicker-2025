@@ -5,7 +5,7 @@ public static class FileManager
     const string SAVE_KEY = "Profile A";
     const int SPICY_SAUCE = 052852;
 
-    public static void SaveGame(GameDataOS gameData)
+    public static void SaveGame(GameDataSO gameData)
     {
         string raw = JsonUtility.ToJson(gameData),
                result = Encrypt(raw, SPICY_SAUCE);
@@ -13,7 +13,7 @@ public static class FileManager
         PlayerPrefs.SetString(SAVE_KEY, result);
     }
 
-    public static bool LoadGame(GameDataOS gameData)
+    public static bool LoadGame(GameDataSO gameData)
     {
         if (!PlayerPrefs.HasKey(SAVE_KEY)) return false;
 
