@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\SO Classes\GameDataSO.cs" />
+    <Compile Include="Assets\BuildingShop.cs" />
     <Compile Include="Assets\FileManager.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\ClickSystem.cs" />

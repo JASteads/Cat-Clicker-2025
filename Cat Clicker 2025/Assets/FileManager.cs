@@ -11,6 +11,7 @@ public static class FileManager
                result = Encrypt(raw, SPICY_SAUCE);
 
         PlayerPrefs.SetString(SAVE_KEY, result);
+        Debug.Log(SAVE_KEY + " saved.");
     }
 
     public static bool LoadGame(GameDataSO gameData)

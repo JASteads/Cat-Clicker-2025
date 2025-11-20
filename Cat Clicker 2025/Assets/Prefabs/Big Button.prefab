@@ -274,11 +274,11 @@ RectTransform:
   - {fileID: 7909204916803818930}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4874087223526213693
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -375,3 +375,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickSystem
   gameData: {fileID: 11400000, guid: ebecb7e378156ee4381939c0a6f50512, type: 2}
   bigButton: {fileID: 5325618964384547355}
+  bitCount: {fileID: 0}
+  bpsRate: {fileID: 0}

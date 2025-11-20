@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4268266300633907996
+--- !u!1 &2754136836262853829
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9020289851498137211}
-  - component: {fileID: 8478182992183719369}
+  - component: {fileID: 5389691267015021024}
+  - component: {fileID: 2912067657171720710}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Building Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9020289851498137211
-Transform:
+--- !u!224 &5389691267015021024
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4268266300633907996}
-  serializedVersion: 2
+  m_GameObject: {fileID: 2754136836262853829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,20 +31,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8478182992183719369
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &2912067657171720710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4268266300633907996}
+  m_GameObject: {fileID: 2754136836262853829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c454780cfc2b14797a55655198fb98, type: 3}
+  m_Script: {fileID: 11500000, guid: d9ca934294b548c4a89a3cff0e0c0014, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingShop
   gameData: {fileID: 11400000, guid: ebecb7e378156ee4381939c0a6f50512, type: 2}
-  clickSystem: {fileID: 1317332795019124933, guid: 7608c15d3ce8b454ea5f53fe59a92f0f, type: 3}
-  buildingShop: {fileID: 2912067657171720710, guid: a4e3f6cc18c50d34d980a342382b6714, type: 3}
-  canvas: {fileID: 8807355947682820151, guid: a11728bbb5386d049aad4e6a79a3997b, type: 3}
-  autosaveTimer: 0
+  shopButtons: []
