@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5e8c28b91a217469bdb16e4cf0ad13, type: 3}
-  m_Name: GameDataSO
+  m_Name: GameDataSave
   m_EditorClassIdentifier: Assembly-CSharp::GameDataSO
-  currentBits: 346.36376517120175
-  totalBits: 346.36376517120175
-  bitsPerSecond: 2.266
+  currentBits: 0
+  totalBits: 0
+  bitsPerSecond: 0
   clickPower: 1
-  totalClicks: 11
+  totalClicks: 0

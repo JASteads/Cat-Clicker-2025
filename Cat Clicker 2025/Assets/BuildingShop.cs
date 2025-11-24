@@ -4,18 +4,20 @@ using UnityEngine.UI;
 
 public class BuildingShop : MonoBehaviour
 {
-    [SerializeField] GameDataSO gameData;
-    public List<Button> shopButtons;
+    public GameDataSO gameData;
+    public Button[] catButtons;
+    public Button[] buildingButtons;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Vector2 unitShopPosition = new Vector2(60, -50),
+            buildingShopPosition = new Vector2(985, -50);
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void RefreshShop()
     {
-        
+
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ClickSystem : MonoBehaviour
 {
-    [SerializeField] GameDataSO gameData;
+    public GameDataSO gameData;
     [SerializeField] Button bigButton;
     [SerializeField] Text bitCount;
     [SerializeField] Text bpsRate;
