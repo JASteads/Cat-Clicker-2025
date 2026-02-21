@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class ClickHandler : MonoBehaviour
 {
-    [SerializeField] public GameData gameData;
     [SerializeField] Button bigButton;
     [SerializeField] TextMeshProUGUI bitCount;
     [SerializeField] TextMeshProUGUI bpsRate;
@@ -13,6 +12,11 @@ public class ClickHandler : MonoBehaviour
     {
         bigButton = gameObject.GetComponent<Button>();   // Find the button and make it the big button
         bigButton.onClick.AddListener(OnClick);
+    }
+
+    public void StartSystem(GameData data)
+    {
+        GameDataManager.gameData = data;
     }
 
     void OnEnable()
@@ -27,10 +31,12 @@ public class ClickHandler : MonoBehaviour
 
     void LateUpdate()
     {
+        GameData gameData = GameDataManager.gameData;
+
         bitCount.text = "Bits : " +
             $"{Utilities.ToBitNotation(gameData.baseData.currentBits)}";
         bpsRate.text = "Bits per second : " +
-            $"{Utilities.ToBitNotation(gameData.baseData.bps)}";
+            $"{Utilities.ToBitNotation(gameData.GetTotalBPS())}";
     }
 
     void OnClick()
@@ -40,8 +46,8 @@ public class ClickHandler : MonoBehaviour
     
     void HandleClick()
     {
-        double gains = gameData.baseData.clickPower;
-        gameData.baseData.currentBits += gains;
+        double gains = GameDataManager.gameData.baseData.clickPower;
+        GameDataManager.gameData.baseData.currentBits += gains;
 
         EventBus.GoBitsAdded(gains);
     }

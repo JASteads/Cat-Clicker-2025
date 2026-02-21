@@ -44,11 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c454780cfc2b14797a55655198fb98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  gameData:
+  gameDataLocal:
     baseData:
       currentBits: 0
-      bps: 0
-  clickHandler: {fileID: 8760563930525464971, guid: 7608c15d3ce8b454ea5f53fe59a92f0f, type: 3}
-  buildingShop: {fileID: 2912067657171720710, guid: a4e3f6cc18c50d34d980a342382b6714, type: 3}
-  canvas: {fileID: 8807355947682820151, guid: a11728bbb5386d049aad4e6a79a3997b, type: 3}
+      spamBPS: 0
+      clickPower: 1
+    spammablesData:
+    - owned: 0
+      multiplier: 1
+    - owned: 0
+      multiplier: 1
+    - owned: 0
+      multiplier: 1
+    - owned: 0
+      multiplier: 1
+    - owned: 0
+      multiplier: 1
+    - owned: 0
+      multiplier: 1
+  clickHandler: {fileID: 0}
+  spammablesShop: {fileID: 0}
   autosaveTimer: 0

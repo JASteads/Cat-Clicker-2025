@@ -1,23 +1,26 @@
-public class SpammableData
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "SpammableData", menuName = "CatClicker/Spammable Data")]
+public class SpammableData : ScriptableObject
 {
-    public string name;
+    const float COST_EXPONENT = 1.15f;
 
-    public readonly int basePrice;
-    public int count;
-    public double totalBitProd;
-    
-    // AssistantData assistant;
+    [Header("Settings")]
+    public string unitName = "Unit";
+    [SerializeField] public double basePrice = 1;
+    [SerializeField] public double baseBPS = 0.1;
 
-    public SpammableData(string name, int basePrice)
+    public double GetCost(int amount, int owned)
     {
-        this.name = name;
-        this.basePrice = basePrice;
-        count = 0;
-        totalBitProd = 0;
+        float r = COST_EXPONENT;
+        double rOwned = Mathf.Pow(r, owned);
+
+        // Using geometric series sum formula to avoid excess calculation
+        return basePrice * rOwned * (1 - Mathf.Pow(r, amount)) / (1 - r);
     }
-}
 
-public class AssistantData
-{
-
+    public double GetRawBPS(int owned)
+    {
+        return baseBPS * owned;
+    }    
 }

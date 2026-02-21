@@ -1,23 +1,31 @@
-using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class GameData
 {
-    public BaseData baseData;
-    public List<SpammableData> unitsData;
-    public List<SpammableData> buildingsData;
+    const int SPAMMABLE_COUNT = 6;
+
+    [SerializeField] public BaseData baseData;
+    [SerializeField] public SpammableSaveData[] spammablesData;
 
     public GameData()
     {
         baseData = new BaseData(0, 0, 1);
-        unitsData = new List<SpammableData>();
-        buildingsData = new List<SpammableData>();
+        spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
+    }
+
+    public double GetTotalBPS()
+    {
+        double sum = 0;
+        sum += baseData.spamBPS;
+
+        return sum;
     }
 
     public override string ToString()
     {
         return $"Current Bits: {baseData.currentBits.ToString()}" +
-            $"\nBPS: {baseData.bps.ToString()}";
+            $"\nBPS: {baseData.spamBPS.ToString()}";
     }
 }
 
@@ -25,13 +33,26 @@ public class GameData
 public struct BaseData
 {
     public double currentBits,
-                  bps,
+                  spamBPS,
                   clickPower;
 
-    public BaseData(double currentBits, double bps, double clickPower)
+    public BaseData(double currentBits, double spamBPS, double clickPower)
     {
         this.currentBits = currentBits;
-        this.bps = bps;
+        this.spamBPS = spamBPS;
         this.clickPower = clickPower;
+    }
+}
+
+[System.Serializable]
+public struct SpammableSaveData
+{
+    public int owned;
+    public double multiplier;
+
+    public SpammableSaveData(int owned = 0, double multiplier = 1)
+    {
+        this.owned = owned;
+        this.multiplier = multiplier;
     }
 }

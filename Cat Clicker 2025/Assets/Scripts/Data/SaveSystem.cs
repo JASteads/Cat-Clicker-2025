@@ -36,8 +36,6 @@ public static class SaveSystem
                 byte[] bytes = Encoding.UTF8.GetBytes(result);
                 File.WriteAllBytes(GetFilePath(), bytes);
             }
-
-            Debug.Log($"{SAVE_KEY} saved.");
         }
         catch (System.Exception e)
         {
@@ -69,6 +67,7 @@ public static class SaveSystem
 
             string result = ENCRYPT_DATA ?
                 Obfuscate(rawLoad, SPICY_SAUCE) : rawLoad;
+            Debug.Log("Load JSON: " + rawLoad);
             JsonUtility.FromJsonOverwrite(result, gameData);
 
             return true;

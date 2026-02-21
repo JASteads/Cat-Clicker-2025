@@ -1,13 +1,13 @@
 using System;
-using UnityEngine;
+using System.Collections.Generic;
 
 public static class EventBus
 {
     public static event Action OnBigButtonClick;
     public static event Action<double> OnBitsAdded;
     public static event Action OnGameTick;
-    public static event Action<double> OnBPSChange;
-    public static event Action<string, int> OnSpammablePurchase;
+    public static event Action<double> OnSpamBPSChange;
+    public static event Action<List<SpammableData>> OnSpammablePurchase;
     public static event Action<string> OnAchievement;
 
     public static void GoBigButtonClick()
@@ -25,9 +25,9 @@ public static class EventBus
         OnGameTick?.Invoke();
     }
 
-    public static void GoSpammablePurchase(string name, int amount)
+    public static void GoSpammablePurchase(List<SpammableData> spammableData)
     {
-        OnSpammablePurchase?.Invoke(name, amount);
+        OnSpammablePurchase?.Invoke(spammableData);
     }
 
     public static void GoAchievement(string name)
@@ -35,8 +35,8 @@ public static class EventBus
         OnAchievement?.Invoke(name);
     }
 
-    public static void GoBPSChange(double newBPS)
+    public static void GoSpamBPSChange(double newBPS)
     {
-        OnBPSChange?.Invoke(newBPS);
+        OnSpamBPSChange?.Invoke(newBPS);
     }
 }
