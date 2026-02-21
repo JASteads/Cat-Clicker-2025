@@ -7,11 +7,13 @@ public class GameData
 
     [SerializeField] public BaseData baseData;
     [SerializeField] public SpammableSaveData[] spammablesData;
+    [SerializeField] public bool[] upgradesPool;
 
     public GameData()
     {
         baseData = new BaseData(0, 0, 1);
         spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
+        upgradesPool = new bool[1] { false }; // Just one for testing
     }
 
     public double GetTotalBPS()

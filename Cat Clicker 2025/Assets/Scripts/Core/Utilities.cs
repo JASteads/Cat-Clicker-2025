@@ -18,7 +18,7 @@ public static class Utilities
         double absValue = Math.Abs(value);
 
         // Only use special format for values greater than 1 million
-        if (absValue < 1e6) return value.ToString($"N0");
+        if (absValue < 1e6) return value.ToString("0.#");
 
         int suffixValue = -1;
 

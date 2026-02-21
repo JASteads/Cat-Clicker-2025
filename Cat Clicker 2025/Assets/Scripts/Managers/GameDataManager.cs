@@ -4,9 +4,11 @@ using UnityEngine;
 public class GameDataManager : MonoBehaviour
 {
     [SerializeField] GameData gameDataLocal; // Localized version for internal control
+    [SerializeField] public List<SpammableData> spammables;
     [SerializeField] ClickHandler clickHandler;
     [SerializeField] CurrencySystem currencySystem;
     [SerializeField] SpammablesShop spammablesShop;
+    [SerializeField] UpgradesShop upgradesShop;
     [SerializeField] float autosaveTimer = 0;
 
     public static GameData gameData;
@@ -27,6 +29,8 @@ public class GameDataManager : MonoBehaviour
 
         // Configuring object-specific fields
         currencySystem = new CurrencySystem();
+        currencySystem.spammables = spammables;
+        spammablesShop.spammables = spammables;
     }
 
     void OnDestroy()

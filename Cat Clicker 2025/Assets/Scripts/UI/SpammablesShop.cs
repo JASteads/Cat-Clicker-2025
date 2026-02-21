@@ -55,12 +55,13 @@ public class SpammablesShop : MonoBehaviour
         // Complete and signal purchase
         SpammableSaveData[] data = GameDataManager.gameData.spammablesData;
         int owned = data[id].owned;
+        double cost = spammables[id].GetCost(amount, owned);
+        Debug.Log($"Can buy!\nCost: {cost}");
 
-        Debug.Log($"Can buy!\nCost: {spammables[id].GetCost(amount, owned)}");
+        GameDataManager.gameData.baseData.currentBits -= cost;
+        EventBus.GoBitsAdded(-cost);
+        EventBus.GoSpammablePurchase(spammables[id]);
 
-        GameDataManager.gameData.baseData.currentBits -=
-            spammables[id].GetCost(amount, owned);
-        EventBus.GoSpammablePurchase(spammables);
         data[id].owned += amount;
         UpdateButton(id, amount);
 

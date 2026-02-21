@@ -4,21 +4,18 @@ using UnityEngine;
 public class CurrencySystem
 {
     public double spammableBPS;
+    public List<SpammableData> spammables;
 
     public CurrencySystem()
     {
         EventBus.OnGameTick += Tick;
         EventBus.OnSpammablePurchase += OnPurchasedSpammable;
+        EventBus.OnSpamBPSChange += RecalculateBPS;
     }
 
     public void AddBits(double amount)
     {
         GameDataManager.gameData.baseData.currentBits += amount;
-    }
-
-    public void ChangeBPS(double newBPS)
-    {
-        GameDataManager.gameData.baseData.spamBPS = newBPS;
     }
 
     public void Tick()
@@ -30,18 +27,25 @@ public class CurrencySystem
         EventBus.GoBitsAdded(spamBPSRate);
     }
 
-    public void OnPurchasedSpammable(List<SpammableData> spammables)
+    public void OnPurchasedSpammable(SpammableData s)
     {
-        RecalculateSpamBPS(spammables);
+        RecalculateBPS();
     }
 
     public void StopSystem()
     {
         EventBus.OnGameTick -= Tick;
         EventBus.OnSpammablePurchase -= OnPurchasedSpammable;
+        EventBus.OnSpamBPSChange -= RecalculateBPS;
     }
 
-    void RecalculateSpamBPS(List<SpammableData> spammables)
+    void RecalculateBPS()
+    {
+        Debug.Log("Recalculating BPS ...");
+        RecalculateSpamBPS();
+    }
+
+    void RecalculateSpamBPS()
     {
         double spamBPS = 0;
         SpammableSaveData[] data = GameDataManager.gameData.spammablesData;
@@ -51,7 +55,7 @@ public class CurrencySystem
             spamBPS += spammables[i].GetRawBPS(data[i].owned) * data[i].multiplier;
         }
 
+        Debug.Log($"New Raw BPS: {spamBPS}");
         GameDataManager.gameData.baseData.spamBPS = spamBPS;
-        EventBus.GoSpamBPSChange(spamBPS);
     }
 }
