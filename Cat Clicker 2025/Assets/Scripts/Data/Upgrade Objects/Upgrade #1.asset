@@ -15,4 +15,3 @@ MonoBehaviour:
   upgradeName: Upgrade #1
   desc: Doubles Bit Cat BPS
   price: 100
-  isPurchased: 1

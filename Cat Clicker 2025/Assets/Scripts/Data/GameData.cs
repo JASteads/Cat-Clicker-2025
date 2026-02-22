@@ -1,18 +1,22 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
 public class GameData
 {
     const int SPAMMABLE_COUNT = 6;
+    const int SPECIALIST_COUNT = 1;
 
     [SerializeField] public BaseData baseData;
     [SerializeField] public SpammableSaveData[] spammablesData;
+    [SerializeField] public SpecialistSaveData[] specialistData;
     [SerializeField] public bool[] upgradesPool;
 
     public GameData()
     {
         baseData = new BaseData(0, 0, 1);
         spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
+        specialistData = new SpecialistSaveData[SPECIALIST_COUNT];
         upgradesPool = new bool[1] { false }; // Just one for testing
     }
 
@@ -31,7 +35,7 @@ public class GameData
     }
 }
 
-[System.Serializable]
+[Serializable]
 public struct BaseData
 {
     public double currentBits,
@@ -46,7 +50,7 @@ public struct BaseData
     }
 }
 
-[System.Serializable]
+[Serializable]
 public struct SpammableSaveData
 {
     public int owned;
@@ -56,5 +60,21 @@ public struct SpammableSaveData
     {
         this.owned = owned;
         this.multiplier = multiplier;
+    }
+}
+
+[Serializable]
+public struct SpecialistSaveData
+{
+    public int level;
+    public double bpsMulti;
+    public bool isOwned;
+
+    public SpecialistSaveData(
+        int level = 0, double bpsMulti = 1, bool isOwned = false)
+    {
+        this.level = level;
+        this.bpsMulti = bpsMulti;
+        this.isOwned = isOwned;
     }
 }

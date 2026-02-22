@@ -56,6 +56,16 @@ public class CurrencySystem
         }
 
         Debug.Log($"New Raw BPS: {spamBPS}");
+
+        // Apply basic specialist logic
+        SpecialistSaveData[] specialists = GameDataManager.gameData.specialistData;
+        if (specialists[0].isOwned)
+        {
+            spamBPS *= GameDataManager.gameData.specialistData[0].bpsMulti;
+        }
+
+        Debug.Log($"BPS w/ Specialist Multiplier: {spamBPS}");
+
         GameDataManager.gameData.baseData.spamBPS = spamBPS;
     }
 }

@@ -1,16 +1,24 @@
 using System;
-using System.Collections.Generic;
 
 public static class EventBus
 {
+    // Common Events
     public static event Action OnBigButtonClick;
     public static event Action<double> OnBitsAdded;
     public static event Action OnGameTick;
     public static event Action OnSpamBPSChange;
-    public static event Action<SpammableData> OnSpammablePurchase;
-    public static event Action OnUpgradePurchase;
     public static event Action<string> OnAchievement;
 
+    // Shop Events
+    public static event Action<SpammableData> OnSpammablePurchase;
+    public static event Action OnUpgradePurchase;
+
+    // Specialists Events
+    public static event Action OnSpecialistPurchase;
+    public static event Action<int, int> OnSpecialistMilestone;
+
+
+    // Common Invocations
     public static void GoBigButtonClick()
     {
         OnBigButtonClick?.Invoke();
@@ -26,6 +34,18 @@ public static class EventBus
         OnGameTick?.Invoke();
     }
 
+    public static void GoAchievement(string name)
+    {
+        OnAchievement?.Invoke(name);
+    }
+
+    public static void GoSpamBPSChange()
+    {
+        OnSpamBPSChange?.Invoke();
+    }
+
+
+    // Shop Invocations
     public static void GoSpammablePurchase(SpammableData s)
     {
         OnSpammablePurchase?.Invoke(s);
@@ -36,13 +56,14 @@ public static class EventBus
         OnUpgradePurchase?.Invoke();
     }
 
-    public static void GoAchievement(string name)
+    // Specialist Invocations
+    public static void GoSpecialistPurchase()
     {
-        OnAchievement?.Invoke(name);
+        OnSpecialistPurchase?.Invoke();
     }
 
-    public static void GoSpamBPSChange()
+    public static void GoSpecialistMilestone(int id, int level)
     {
-        OnSpamBPSChange?.Invoke();
+        OnSpecialistMilestone?.Invoke(id, level);
     }
 }
