@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CurrencySystem
 {
-    public double spammableBPS;
+    public double globalMulti = 1;
     public List<SpammableData> spammables;
 
     public CurrencySystem()
@@ -11,6 +11,8 @@ public class CurrencySystem
         EventBus.OnGameTick += Tick;
         EventBus.OnSpammablePurchase += OnPurchasedSpammable;
         EventBus.OnSpamBPSChange += RecalculateBPS;
+        EventBus.OnFeverTimeStart += StartFeverTimeMulti;
+        EventBus.OnFeverTimeEnd += EndFeverTimeMulti;
     }
 
     public void AddBits(double amount)
@@ -37,9 +39,11 @@ public class CurrencySystem
         EventBus.OnGameTick -= Tick;
         EventBus.OnSpammablePurchase -= OnPurchasedSpammable;
         EventBus.OnSpamBPSChange -= RecalculateBPS;
+        EventBus.OnFeverTimeStart -= StartFeverTimeMulti;
+        EventBus.OnFeverTimeEnd -= EndFeverTimeMulti;
     }
 
-    void RecalculateBPS()
+    public void RecalculateBPS()
     {
         Debug.Log("Recalculating BPS ...");
         RecalculateSpamBPS();
@@ -66,6 +70,18 @@ public class CurrencySystem
 
         Debug.Log($"BPS w/ Specialist Multiplier: {spamBPS}");
 
-        GameDataManager.gameData.baseData.spamBPS = spamBPS;
+        GameDataManager.gameData.baseData.spamBPS = spamBPS * globalMulti;
+    }
+
+    void StartFeverTimeMulti()
+    {
+        globalMulti *= 1.5f;
+        RecalculateBPS();
+    }
+
+    void EndFeverTimeMulti()
+    {
+        globalMulti /= 1.5f;
+        RecalculateBPS();
     }
 }

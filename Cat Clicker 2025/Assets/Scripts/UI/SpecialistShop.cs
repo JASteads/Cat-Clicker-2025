@@ -123,13 +123,14 @@ public class SpecialistShop : MonoBehaviour
 
     bool CanAfford(int id)
     {
-        GameData gameData = GameDataManager.gameData;
-
         // Don't check if invalid id
         if (specialists.Count < id) return false;
 
+        GameData gameData = GameDataManager.gameData;
         SpecialistData s = specialists[id];
-        double price = s.GetPrice(
+        bool isLevelZero = gameData.specialistData[id].level == 0;
+        
+        double price = isLevelZero? s.basePrice : s.GetPrice(
             GameDataManager.gameData.specialistData[id].level);
 
         return gameData.baseData.currentBits >= price;

@@ -424,7 +424,6 @@ GameObject:
   - component: {fileID: 4874087223526213693}
   - component: {fileID: 6906804293174171639}
   - component: {fileID: 5325618964384547355}
-  - component: {fileID: 8760563930525464971}
   m_Layer: 5
   m_Name: Big Button
   m_TagString: Untagged
@@ -535,23 +534,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8760563930525464971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766693206549644581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56da46ef58fecf4ba6a1ebfac74697d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClickSystem
-  gameData:
-    baseData:
-      currentBits: 0
-      bps: 0
-      clickPower: 1
-  bigButton: {fileID: 5325618964384547355}
-  bitCount: {fileID: 1226491319685835279}
-  bpsRate: {fileID: 7216074888941787988}

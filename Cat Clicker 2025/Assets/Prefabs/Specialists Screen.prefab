@@ -1432,7 +1432,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734078778488549479}
-  - component: {fileID: 8295083900182940393}
   m_Layer: 5
   m_Name: Specialists Screen
   m_TagString: Untagged
@@ -1464,24 +1463,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8295083900182940393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520388180686481374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515926474a9d8e24cbac3529e8e99f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecialistShop
-  activeSpecialistID: -1
-  specialists:
-  - {fileID: 11400000, guid: 9ca4cb74f90c1fa4d980777e9bb44c66, type: 2}
-  levelUpButton: {fileID: 5425420063446123327}
-  levelText: {fileID: 9058368595741444562}
-  specialistName: {fileID: 2343871355219424075}
-  specialistTitle: {fileID: 4268337742604751290}
-  specialistDescription: {fileID: 2966417885693727013}
-  levelUpCostText: {fileID: 4829545941975490522}

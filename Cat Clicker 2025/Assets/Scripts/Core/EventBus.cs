@@ -17,6 +17,10 @@ public static class EventBus
     public static event Action OnSpecialistPurchase;
     public static event Action<int, int> OnSpecialistMilestone;
 
+    // Fever Events
+    public static event Action OnFeverTimeStart;
+    public static event Action OnFeverTimeEnd;
+
 
     // Common Invocations
     public static void GoBigButtonClick()
@@ -65,5 +69,16 @@ public static class EventBus
     public static void GoSpecialistMilestone(int id, int level)
     {
         OnSpecialistMilestone?.Invoke(id, level);
+    }
+
+    // Fever Invocations
+    public static void GoFeverTimeStart()
+    {
+        OnFeverTimeStart?.Invoke();
+    }
+
+    public static void GoFeverTimeEnd()
+    {
+        OnFeverTimeEnd?.Invoke();
     }
 }

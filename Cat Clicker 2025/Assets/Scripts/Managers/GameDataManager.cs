@@ -14,9 +14,10 @@ public class GameDataManager : MonoBehaviour
     // System Elements
     [Header("Systems")]
     [SerializeField] ClickHandler clickHandler;
-    [SerializeField] CurrencySystem currencySystem;
     [SerializeField] SpammablesShop spammablesShop;
     [SerializeField] UpgradesShop upgradesShop;
+    [SerializeField] FeverSystem feverSystem;
+    CurrencySystem currencySystem;
 
     // UI Elements
     [Header("UI Elements")]
@@ -32,10 +33,16 @@ public class GameDataManager : MonoBehaviour
     void Awake()
     {
         // Singleton activation
-        if (Instance == null)
+        if (Instance == null || Instance.gameObject == null)
         {
-            Instance = this;
+            Instance = null;
         }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
 
         if (gameDataLocal == null)
         {
@@ -63,12 +70,13 @@ public class GameDataManager : MonoBehaviour
                 !upgradesShop.gameObject.activeSelf));
     }
 
+
     void OnDestroy()
     {
-        currencySystem.StopSystem();
+        currencySystem?.StopSystem();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         EventBus.GoGameTick();
 
@@ -81,5 +89,11 @@ public class GameDataManager : MonoBehaviour
             Debug.Log($"Showing Game Data ..\n{gameData.ToString()}");
             SaveSystem.SaveGame(gameDataLocal);
         }
+    }
+
+    [ContextMenu("Recalculate BPS")]
+    void ForceRecalculateBPS()
+    {
+        currencySystem.RecalculateBPS();
     }
 }
