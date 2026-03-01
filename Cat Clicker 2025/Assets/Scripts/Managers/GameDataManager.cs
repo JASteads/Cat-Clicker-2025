@@ -17,6 +17,7 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] SpammablesShop spammablesShop;
     [SerializeField] UpgradesShop upgradesShop;
     [SerializeField] FeverSystem feverSystem;
+    [SerializeField] AchievementsUI achievementsUI;
     CurrencySystem currencySystem;
 
     // UI Elements
@@ -68,6 +69,7 @@ public class GameDataManager : MonoBehaviour
         upgradesShopButton.onClick.AddListener(
             () => upgradesShop.gameObject.SetActive(
                 !upgradesShop.gameObject.activeSelf));
+        upgradesShop.gameObject.SetActive(false);
     }
 
 

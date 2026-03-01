@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 39
+  controlID: 37
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 40
+  controlID: 38
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 41
+  controlID: 39
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -246,14 +246,14 @@ MonoBehaviour:
     y: 781
     width: 2153
     height: 512
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 18}
+  m_MinSize: {x: 231, y: 276}
+  m_MaxSize: {x: 10001, y: 10026}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 407
     height: 1293
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 43
+    y: 0
     width: 2560
     height: 36
   m_SerializedDataModeController:
@@ -567,8 +567,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 309
-    y: 79
+    x: 310
+    y: 24
     width: 1842
     height: 755
   m_SerializedDataModeController:
@@ -1141,9 +1141,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -393.92926, y: 41.638725, z: 86.591835}
+    m_Target: {x: -29.841515, y: 11.464646, z: -6.7416954}
     speed: 2
-    m_Value: {x: -393.92926, y: 41.638725, z: 86.591835}
+    m_Value: {x: -29.841515, y: 11.464646, z: -6.7416954}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1193,9 +1193,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 646.9281
+    m_Target: 684.16974
     speed: 2
-    m_Value: 646.9281
+    m_Value: 684.16974
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 308
     height: 755
   m_SerializedDataModeController:
@@ -1270,31 +1270,18 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: -148370
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_Data: -148370
+        m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -118678
-      - m_Data: -118638
-      - m_Data: -118620
-      - m_Data: -118608
-      - m_Data: -117536
-      - m_Data: -1936
-      - m_Data: -1902
-      - m_Data: -1868
-      - m_Data: -1834
-      - m_Data: -1800
-      - m_Data: -1766
-      - m_Data: -1504
-      - m_Data: -1438
-      - m_Data: -1318
       - m_Data: -1316
-      - m_Data: 40602
+      - m_Data: 40606
+      - m_Data: 40624
+      - m_Data: 40640
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Game Data Manager
-        m_OriginalName: Game Data Manager
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
@@ -1302,10 +1289,10 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: -2056
+          m_Data: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 4
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 8}
@@ -1389,7 +1376,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1481,7 +1468,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 860
+    y: 805
     width: 2152
     height: 486
   m_SerializedDataModeController:
@@ -1508,7 +1495,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Managers
+    - Assets/Scripts/Data
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1518,7 +1505,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Managers
+  - Assets/Scripts/Data
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Machine\Documents\GAME PROJECTS\Cat-Clicker-2025\Cat
     Clicker 2025
@@ -1528,17 +1515,13 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 42004
+    - m_Data: 41922
     m_LastClickedID:
-      m_Data: 42004
+      m_Data: 41922
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 41880
-    - m_Data: 41882
-    - m_Data: 41982
-    - m_Data: 41988
-    - m_Data: 41996
-    - m_Data: 1000000000
+    - m_Data: 41798
+    - m_Data: 41800
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1571,8 +1554,8 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 41880
-    - m_Data: 41882
+    - m_Data: 41798
+    - m_Data: 41800
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1600,8 +1583,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 38304
-    m_LastClickedInstanceID: 38304
+    - m_Data: 32142
+    m_LastClickedInstanceID: 32142
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 40934
@@ -1693,8 +1676,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 2153
-    y: 79
+    x: 2154
+    y: 24
     width: 406
     height: 1267
   m_SerializedDataModeController:

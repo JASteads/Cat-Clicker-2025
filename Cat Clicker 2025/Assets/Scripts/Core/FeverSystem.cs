@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[Serializable]
 public class FeverSystem
 {
     const float CHARGE_RATE = 4;

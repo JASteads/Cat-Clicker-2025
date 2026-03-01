@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,14 +11,14 @@ public class GameData
     [SerializeField] public BaseData baseData;
     [SerializeField] public SpammableSaveData[] spammablesData;
     [SerializeField] public SpecialistSaveData[] specialistData;
-    [SerializeField] public bool[] upgradesPool;
+    [SerializeField] public HashSet<string> upgradesPool;
 
     public GameData()
     {
-        baseData = new BaseData(0, 0, 1);
+        baseData = new BaseData();
         spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
         specialistData = new SpecialistSaveData[SPECIALIST_COUNT];
-        upgradesPool = new bool[1] { false }; // Just one for testing
+        upgradesPool = new HashSet<string>();
     }
 
     public double GetTotalBPS()
@@ -40,13 +41,21 @@ public struct BaseData
 {
     public double currentBits,
                   spamBPS,
-                  clickPower;
+                  clickPower,
+                  clickPowerMulti,
+                  bpsToClickPowerMulti,
+                  bpsToClickPowerPercent;
 
-    public BaseData(double currentBits, double spamBPS, double clickPower)
+    public BaseData(double currentBits = 0, double spamBPS = 0,
+        double clickPower = 1, double clickPowerMulti = 1,
+        double bpsToClickPowerMulti = 0, double bpsToClickPowerPercent = 0)
     {
         this.currentBits = currentBits;
         this.spamBPS = spamBPS;
         this.clickPower = clickPower;
+        this.clickPowerMulti = clickPowerMulti;
+        this.bpsToClickPowerMulti = bpsToClickPowerMulti;
+        this.bpsToClickPowerPercent = bpsToClickPowerPercent;
     }
 }
 

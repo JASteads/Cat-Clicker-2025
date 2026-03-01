@@ -17,7 +17,7 @@ public class FeverSystemUI : MonoBehaviour
     [SerializeField] public Color feverBarColor;
 
     [Header("System")]
-    [SerializeField] public FeverSystem feverSystem;
+    public FeverSystem feverSystem;
     [SerializeField] public float percentCharge;
 
     void Awake()
