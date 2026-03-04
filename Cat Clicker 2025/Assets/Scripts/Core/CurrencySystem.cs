@@ -18,6 +18,7 @@ public class CurrencySystem
     public void AddBits(double amount)
     {
         GameDataManager.gameData.baseData.currentBits += amount;
+        GameDataManager.gameData.baseData.totalBits += amount;
     }
 
     public void Tick()

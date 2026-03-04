@@ -7,7 +7,8 @@ public static class EventBus
     public static event Action<double> OnBitsAdded;
     public static event Action OnGameTick;
     public static event Action OnSpamBPSChange;
-    public static event Action<string> OnAchievement;
+    public static event Action<AchievementData> OnAchievement;
+    public static event Action<UnityEngine.Transform, bool> OnInterfaceFocus;
 
     // Shop Events
     public static event Action<SpammableData> OnSpammablePurchase;
@@ -20,7 +21,6 @@ public static class EventBus
     // Fever Events
     public static event Action OnFeverTimeStart;
     public static event Action OnFeverTimeEnd;
-
 
     // Common Invocations
     public static void GoBigButtonClick()
@@ -38,14 +38,19 @@ public static class EventBus
         OnGameTick?.Invoke();
     }
 
-    public static void GoAchievement(string name)
+    public static void GoAchievement(AchievementData a)
     {
-        OnAchievement?.Invoke(name);
+        OnAchievement?.Invoke(a);
     }
 
     public static void GoSpamBPSChange()
     {
         OnSpamBPSChange?.Invoke();
+    }
+
+    public static void GoInterfaceFocus(UnityEngine.Transform obj, bool isActive)
+    {
+        OnInterfaceFocus?.Invoke(obj, isActive);
     }
 
 
@@ -60,6 +65,7 @@ public static class EventBus
         OnUpgradePurchase?.Invoke();
     }
 
+
     // Specialist Invocations
     public static void GoSpecialistPurchase()
     {
@@ -70,6 +76,7 @@ public static class EventBus
     {
         OnSpecialistMilestone?.Invoke(id, level);
     }
+
 
     // Fever Invocations
     public static void GoFeverTimeStart()

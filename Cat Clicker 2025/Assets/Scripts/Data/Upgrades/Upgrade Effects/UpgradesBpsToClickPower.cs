@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UpgradesBpsToClickPower",
-    menuName = "Scriptable Objects/Upgrade/Effect/Bps To Click Power")]
+    menuName = "CatClicker/Upgrade/Effect/Bps To Click Power")]
 public class UpgradesBpsToClickPower : UpgradeEffect
 {
     public double perecent;

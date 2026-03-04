@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UpgradeAssistant", menuName = "Scriptable Objects/Upgrade/Effect/Assistant")]
+[CreateAssetMenu(fileName = "UpgradeAssistant", menuName = "CatClicker/Upgrade/Effect/Assistant")]
 public class UpgradeAssistant : UpgradeEffect
 {
     public override void Apply()

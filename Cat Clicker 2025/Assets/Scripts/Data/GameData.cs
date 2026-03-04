@@ -7,18 +7,23 @@ public class GameData
 {
     const int SPAMMABLE_COUNT = 6;
     const int SPECIALIST_COUNT = 1;
+    const int ACHIEVEMENT_CATEGORIES = 4;
 
     [SerializeField] public BaseData baseData;
     [SerializeField] public SpammableSaveData[] spammablesData;
     [SerializeField] public SpecialistSaveData[] specialistData;
+    [SerializeField] public int[] skillpoints;
     [SerializeField] public HashSet<string> upgradesPool;
+    [SerializeField] public HashSet<string> achivementsPool;
 
     public GameData()
     {
         baseData = new BaseData();
         spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
         specialistData = new SpecialistSaveData[SPECIALIST_COUNT];
+        skillpoints = new int[ACHIEVEMENT_CATEGORIES];
         upgradesPool = new HashSet<string>();
+        achivementsPool = new HashSet<string>();
     }
 
     public double GetTotalBPS()
@@ -40,17 +45,19 @@ public class GameData
 public struct BaseData
 {
     public double currentBits,
+                  totalBits,
                   spamBPS,
                   clickPower,
                   clickPowerMulti,
                   bpsToClickPowerMulti,
                   bpsToClickPowerPercent;
 
-    public BaseData(double currentBits = 0, double spamBPS = 0,
+    public BaseData(double currentBits = 0, double totalBits = 0, double spamBPS = 0,
         double clickPower = 1, double clickPowerMulti = 1,
         double bpsToClickPowerMulti = 0, double bpsToClickPowerPercent = 0)
     {
         this.currentBits = currentBits;
+        this.totalBits = totalBits;
         this.spamBPS = spamBPS;
         this.clickPower = clickPower;
         this.clickPowerMulti = clickPowerMulti;
@@ -85,5 +92,23 @@ public struct SpecialistSaveData
         this.level = level;
         this.bpsMulti = bpsMulti;
         this.isOwned = isOwned;
+    }
+}
+
+[Serializable]
+public struct AchievementSkillpoints
+{
+    public int innovationPoints;
+    public int infinityPoints;
+    public int asterismPoints;
+    public int anomalyPoints;
+
+    public AchievementSkillpoints(int innovationPoints = 0,
+        int infinityPoints = 0, int asterismPoints = 0, int anomalyPoints = 0)
+    {
+        this.innovationPoints = innovationPoints;
+        this.infinityPoints = infinityPoints;
+        this.asterismPoints = asterismPoints;
+        this.anomalyPoints = anomalyPoints;
     }
 }

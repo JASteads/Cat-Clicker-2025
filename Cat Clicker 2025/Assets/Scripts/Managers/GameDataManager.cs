@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] UpgradesShop upgradesShop;
     [SerializeField] FeverSystem feverSystem;
     [SerializeField] AchievementsUI achievementsUI;
+    [SerializeField] OptionsUI optionsUI;
+    AchievementsManager achievementsManager;
     CurrencySystem currencySystem;
 
     // UI Elements
@@ -25,6 +28,7 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] Button specialistsScreenButton;
     [SerializeField] Button specialistsBackButton;
     [SerializeField] Button upgradesShopButton;
+    [SerializeField] Button optionsButton;
 
     // Misc Elements
     [Header("Miscellaneous")]
@@ -59,9 +63,12 @@ public class GameDataManager : MonoBehaviour
         gameData = gameDataLocal;
 
         // Configuring object-specific fields
+        achievementsManager = new AchievementsManager();
         currencySystem = new CurrencySystem();
         currencySystem.spammables = spammables;
         spammablesShop.spammables = spammables;
+
+        // Assign functionality to buttons
         specialistsScreenButton.onClick.AddListener(
             () => UIScreenManager.Instance.ShowScreen(1));
         specialistsBackButton.onClick.AddListener(
@@ -69,9 +76,9 @@ public class GameDataManager : MonoBehaviour
         upgradesShopButton.onClick.AddListener(
             () => upgradesShop.gameObject.SetActive(
                 !upgradesShop.gameObject.activeSelf));
-        upgradesShop.gameObject.SetActive(false);
+        optionsButton.onClick.AddListener(
+            () => EventBus.GoInterfaceFocus(optionsUI.transform, true));
     }
-
 
     void OnDestroy()
     {
@@ -97,5 +104,13 @@ public class GameDataManager : MonoBehaviour
     void ForceRecalculateBPS()
     {
         currencySystem.RecalculateBPS();
+    }
+
+    public static void QuitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
