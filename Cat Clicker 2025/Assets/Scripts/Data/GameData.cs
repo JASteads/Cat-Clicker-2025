@@ -13,8 +13,8 @@ public class GameData
     [SerializeField] public SpammableSaveData[] spammablesData;
     [SerializeField] public SpecialistSaveData[] specialistData;
     [SerializeField] public int[] skillpoints;
-    [SerializeField] public HashSet<string> upgradesPool;
-    [SerializeField] public HashSet<string> achivementsPool;
+    [SerializeField] public List<string> upgradesPool;
+    [SerializeField] public List<string> achivementsPool;
 
     public GameData()
     {
@@ -22,8 +22,8 @@ public class GameData
         spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
         specialistData = new SpecialistSaveData[SPECIALIST_COUNT];
         skillpoints = new int[ACHIEVEMENT_CATEGORIES];
-        upgradesPool = new HashSet<string>();
-        achivementsPool = new HashSet<string>();
+        upgradesPool = new List<string>();
+        achivementsPool = new List<string>();
     }
 
     public double GetTotalBPS()

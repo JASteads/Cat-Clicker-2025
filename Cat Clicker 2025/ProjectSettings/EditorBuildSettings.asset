@@ -6,7 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainGame.unity
+    path: Assets/Scenes/Game Start Holder.unity
+    guid: 97797d272633ced47a701d7348a190cc
+  - enabled: 1
+    path: Assets/Scenes/Start Screen.unity
+    guid: 7a27dec6792b2fb419efbb13a1955385
+  - enabled: 1
+    path: Assets/Scenes/Main Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: dafb44919ca0c0c4f87310b4e711c686, type: 2}
   m_UseUCBPForAssetBundles: 0

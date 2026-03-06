@@ -53,16 +53,14 @@ public class SpammablesShop : MonoBehaviour
         if (!CanAfford(id, amount)) return false;
 
         // Complete and signal purchase
-        SpammableSaveData[] data = GameDataManager.gameData.spammablesData;
-        int owned = data[id].owned;
+        GameData data = GameDataManager.gameData;
+        int owned = data.spammablesData[id].owned;
         double cost = spammables[id].GetCost(amount, owned);
-        Debug.Log($"Can buy!\nCost: {cost}");
 
-        GameDataManager.gameData.baseData.currentBits -= cost;
+        data.spammablesData[id].owned += amount;
+        data.baseData.currentBits -= cost;
         EventBus.GoBitsAdded(-cost);
         EventBus.GoSpammablePurchase(spammables[id]);
-
-        data[id].owned += amount;
         UpdateButton(id, amount);
 
         return true;

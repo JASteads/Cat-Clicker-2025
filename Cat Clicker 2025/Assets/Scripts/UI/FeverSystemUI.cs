@@ -24,11 +24,7 @@ public class FeverSystemUI : MonoBehaviour
     {
         feverSystem = new FeverSystem();
         feverMeterColor = feverBar.color;
-
-        if (feverTimeText != null)
-        {
-            feverTimeText.enabled = false;
-        }
+        DisplayFeverTimeText(false);
     }
 
     void OnEnable()
@@ -75,21 +71,23 @@ public class FeverSystemUI : MonoBehaviour
 
     void StartFeverTime()
     {
+        Debug.Log("Fever Time!");
         SetFeverColorToMax();
-
-        if (feverTimeText != null)
-        {
-            feverTimeText.enabled = true;
-        }
+        DisplayFeverTimeText(true);
     }
 
     void EndFeverTime()
     {
+        Debug.Log("No more Fever Time.");
         SetFeverColorToNormal();
+        DisplayFeverTimeText(false);
+    }
 
+    void DisplayFeverTimeText(bool isActive)
+    {
         if (feverTimeText != null)
         {
-            feverTimeText.enabled = false;
+            feverTimeText.gameObject.SetActive(isActive);
         }
     }
 

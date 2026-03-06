@@ -8,7 +8,7 @@ public class AchievementsUI : MonoBehaviour
     [SerializeField] public CategoryButton[] categoryButtons;
     public int[] tallyArray;
     public int[] countArray;
-    public List<AchievementData> achievementDataList;
+    public AchievementsDatabase database;
 
     [Header("Interface Elements")]
     public GameObject categoryMenu;
@@ -53,7 +53,7 @@ public class AchievementsUI : MonoBehaviour
         countArray = new int[categoryButtons.Length];
 
         // Count how many of each achievement type there are
-        foreach (var a in achievementDataList)
+        foreach (var a in database.list)
         {
             int type = (int)a.effect.GetAchievementType();
             ++countArray[type];
@@ -112,11 +112,11 @@ public class AchievementsUI : MonoBehaviour
         int blockNum = 0;
 
         // Show any block that matches the selected category's type
-        foreach (var a in achievementDataList)
+        foreach (var a in database.list)
         {
             if (a.effect.GetAchievementType() == type)
             {
-                ShowBlock(blockNum, a);
+                UpdateBlock(blockNum, a);
                 ++blockNum;
             }
         }
@@ -161,7 +161,8 @@ public class AchievementsUI : MonoBehaviour
 
         AchievementBlock newBlock = new AchievementBlock
         {
-            icon = newBlockObj.GetComponent<Image>(),
+            icon = newBlockObj.GetComponentInChildren<Image>(),
+            block = newBlockObj.GetComponent<Image>(),
             textBody = nameObject.GetComponent<TextMeshProUGUI>(),
             skillpointsText = nameObject.Find(
                 "Skill Points Text").GetComponent<TextMeshProUGUI>()
@@ -170,13 +171,17 @@ public class AchievementsUI : MonoBehaviour
         blocks.Add(newBlock);
     }
 
-    void ShowBlock(int index, AchievementData a)
+    void UpdateBlock(int index, AchievementData a)
     {
         AchievementBlock b = blocks[index];
 
         b.textBody.text = $"{a.achievementName}\n" +
             $"<size=24>{a.desc}</size>";
         b.skillpointsText.text = a.skillPoints.ToString();
+
+        // Recolor the block (and icon for now)
+        b.block.color = b.icon.color =
+            categoryButtons[(int)a.effect.GetAchievementType()].bodyColor;
     }
 
     int GetMaxCount()
@@ -205,6 +210,7 @@ public struct CategoryButton
 public struct AchievementBlock
 {
     public Image icon;
+    public Image block;
     public TextMeshProUGUI textBody;
     public TextMeshProUGUI skillpointsText;
 }

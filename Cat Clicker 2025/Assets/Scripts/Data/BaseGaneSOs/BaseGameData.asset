@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dd9e548402dc44aa2be92e1cec80b0, type: 3}
+  m_Name: BaseGameData
+  m_EditorClassIdentifier: Assembly-CSharp::BaseGameData
+  spammables:
+  - {fileID: 11400000, guid: 51fa99b0697ed1140aa4f68d8f5db0fb, type: 2}
+  - {fileID: 11400000, guid: c8ccfe6e1eb4a1c4593a76a34c5d84e6, type: 2}
+  - {fileID: 11400000, guid: 4de2412d7f972174299d44ada7ea2215, type: 2}
+  - {fileID: 11400000, guid: 093018a39511e4845a79396fc3860f9c, type: 2}
+  - {fileID: 11400000, guid: a2e405db43dbbd1498a2a0fa6decca11, type: 2}
+  - {fileID: 11400000, guid: d03c1e1958817cf4f8ac8c47754ea53e, type: 2}

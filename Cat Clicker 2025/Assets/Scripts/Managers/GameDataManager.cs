@@ -1,42 +1,22 @@
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance; // Singleton behavior
 
-    // Data Elements
-    [Header("Data")]
-    [SerializeField] GameData gameDataLocal; // Localized version for internal control
-    [SerializeField] public List<SpammableData> spammables;
-
-    // System Elements
-    [Header("Systems")]
-    [SerializeField] ClickHandler clickHandler;
-    [SerializeField] SpammablesShop spammablesShop;
-    [SerializeField] UpgradesShop upgradesShop;
-    [SerializeField] FeverSystem feverSystem;
-    [SerializeField] AchievementsUI achievementsUI;
-    [SerializeField] OptionsUI optionsUI;
-    AchievementsManager achievementsManager;
-    CurrencySystem currencySystem;
-
-    // UI Elements
-    [Header("UI Elements")]
-    [SerializeField] Button specialistsScreenButton;
-    [SerializeField] Button specialistsBackButton;
-    [SerializeField] Button upgradesShopButton;
-    [SerializeField] Button optionsButton;
-
-    // Misc Elements
-    [Header("Miscellaneous")]
-    [SerializeField] float autosaveTimer = 0;
-
+    [SerializeField] GameData gameDataLocal; // Localized version for internal 
     public static GameData gameData;
+
+    // Keep achievements stuff persistent
+    [SerializeField] public AchievementsDatabase achievementsDatabase;
+    public AchievementsManager achievementsManager;
+
     void Awake()
     {
+        DontDestroyOnLoad(this);
+
         // Singleton activation
         if (Instance == null || Instance.gameObject == null)
         {
@@ -49,6 +29,7 @@ public class GameDataManager : MonoBehaviour
         }
         Instance = this;
 
+        // Attempt load of game data
         if (gameDataLocal == null)
         {
             Debug.LogWarning("gameDataLocal was null. Creating a new one ..");
@@ -62,55 +43,33 @@ public class GameDataManager : MonoBehaviour
         }
         gameData = gameDataLocal;
 
-        // Configuring object-specific fields
+        // Initialize achievements system
         achievementsManager = new AchievementsManager();
-        currencySystem = new CurrencySystem();
-        currencySystem.spammables = spammables;
-        spammablesShop.spammables = spammables;
-
-        // Assign functionality to buttons
-        specialistsScreenButton.onClick.AddListener(
-            () => UIScreenManager.Instance.ShowScreen(1));
-        specialistsBackButton.onClick.AddListener(
-            () => UIScreenManager.Instance.ShowScreen(0));
-        upgradesShopButton.onClick.AddListener(
-            () => upgradesShop.gameObject.SetActive(
-                !upgradesShop.gameObject.activeSelf));
-        optionsButton.onClick.AddListener(
-            () => EventBus.GoInterfaceFocus(optionsUI.transform, true));
+        achievementsManager.StartSystem(achievementsDatabase);
     }
 
     void OnDestroy()
     {
-        currencySystem?.StopSystem();
+        achievementsManager?.StopSystem();
     }
 
-    void Update()
+    public static void StartBaseGame()
     {
-        EventBus.GoGameTick();
-
-        // Autosave
-        if (autosaveTimer < 30)
-            autosaveTimer += Time.unscaledDeltaTime;
-        else
-        {
-            autosaveTimer = 0;
-            Debug.Log($"Showing Game Data ..\n{gameData.ToString()}");
-            SaveSystem.SaveGame(gameDataLocal);
-        }
-    }
-
-    [ContextMenu("Recalculate BPS")]
-    void ForceRecalculateBPS()
-    {
-        currencySystem.RecalculateBPS();
+        SceneManager.LoadScene("Main Game", LoadSceneMode.Single);
     }
 
     public static void QuitGame()
     {
+
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    public static void SaveAndQuitGame()
+    {
+        SaveSystem.SaveGame(gameData);
+        QuitGame();
     }
 }

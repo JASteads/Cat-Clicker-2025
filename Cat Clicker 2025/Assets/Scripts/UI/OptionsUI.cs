@@ -17,6 +17,6 @@ public class OptionsUI : MonoBehaviour
         achievementsButton.onClick.AddListener(
             () => EventBus.GoInterfaceFocus(achievementsUI.transform, true));
 
-        quitButton.onClick.AddListener(GameDataManager.QuitGame);
+        quitButton.onClick.AddListener(GameDataManager.SaveAndQuitGame);
     }
 }

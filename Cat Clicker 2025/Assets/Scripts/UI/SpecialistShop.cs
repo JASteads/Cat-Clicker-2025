@@ -33,9 +33,14 @@ public class SpecialistShop : MonoBehaviour
     void OnEnable()
     {
         EventBus.OnBitsAdded += OnBitsUpdate;
+
         if (activeSpecialistID != -1)
         {
             UpdateSpecialistNumbers();
+        }
+        else
+        {
+            activeSpecialistID = 0;
         }
     }
 
@@ -101,8 +106,9 @@ public class SpecialistShop : MonoBehaviour
         // Perform level up
         if (isLevelZero)
         {
-            Debug.Log("Celo has been purchased");
+            Debug.Log($"{s.specialistName} has been purchased");
             data.specialistData[activeSpecialistID].isOwned = true; // Mark that the specialist is owned on first buy
+            EventBus.GoSpecialistMilestone(activeSpecialistID, level);
         }
         ++data.specialistData[activeSpecialistID].level;
         ++level;

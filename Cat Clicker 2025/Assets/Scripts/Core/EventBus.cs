@@ -9,6 +9,7 @@ public static class EventBus
     public static event Action OnSpamBPSChange;
     public static event Action<AchievementData> OnAchievement;
     public static event Action<UnityEngine.Transform, bool> OnInterfaceFocus;
+    public static event Action OnSlowUpdate;
 
     // Shop Events
     public static event Action<SpammableData> OnSpammablePurchase;
@@ -51,6 +52,11 @@ public static class EventBus
     public static void GoInterfaceFocus(UnityEngine.Transform obj, bool isActive)
     {
         OnInterfaceFocus?.Invoke(obj, isActive);
+    }
+
+    public static void GoSlowUpdate()
+    {
+        OnSlowUpdate?.Invoke();
     }
 
 
