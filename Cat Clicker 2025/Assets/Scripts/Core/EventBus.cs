@@ -23,6 +23,10 @@ public static class EventBus
     public static event Action OnFeverTimeStart;
     public static event Action OnFeverTimeEnd;
 
+    // Unique Events
+    public static event Action<string> OnForceAchievement;
+    public static event Action OnGameWin;
+
     // Common Invocations
     public static void GoBigButtonClick()
     {
@@ -93,5 +97,17 @@ public static class EventBus
     public static void GoFeverTimeEnd()
     {
         OnFeverTimeEnd?.Invoke();
+    }
+
+
+    // Unique Invocations
+    public static void GoForceAchievement(string achievementName)
+    {
+        OnForceAchievement?.Invoke(achievementName);
+    }
+
+    public static void GoGameWin()
+    {
+        OnGameWin?.Invoke();
     }
 }

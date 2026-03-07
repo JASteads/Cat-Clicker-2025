@@ -47,12 +47,25 @@ public class BaseGame : MonoBehaviour
             () => EventBus.GoInterfaceFocus(optionsUI.transform, true));
     }
 
+    void OnEnable()
+    {
+        EventBus.OnGameWin += DoTheCelebration;
+    }
+    void OnDisable()
+    {
+        EventBus.OnGameWin -= DoTheCelebration;
+    }
+
     void Update()
     {
         EventBus.GoGameTick();
 
         // Perform slow updates
-        if (slowUpdateTimer >= SLOW_UPDATE_TIME)
+        if (slowUpdateTimer < SLOW_UPDATE_TIME)
+        {
+            slowUpdateTimer += Time.unscaledDeltaTime;
+        }
+        else
         {
             EventBus.GoSlowUpdate();
             slowUpdateTimer = 0;
@@ -78,5 +91,11 @@ public class BaseGame : MonoBehaviour
     void ForceRecalculateBPS()
     {
         currencySystem.RecalculateBPS();
+    }
+
+    void DoTheCelebration()
+    {
+        Debug.Log("Yay!");
+        GameDataManager.SaveAndQuitGame();
     }
 }

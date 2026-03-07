@@ -6,7 +6,7 @@ using TMPro;
 
 public class UpgradesShop : MonoBehaviour
 {
-    [SerializeField] List<UpgradeData> upgradeData; // The data to populate the shop with
+    [SerializeField] UpgradeDatabase database; // The data to populate the shop with
     [SerializeField] public List<UpgradeButton> upgradeButtons; // Reflects which upgrades to show in the shop
 
     [Header("Configuration")]
@@ -82,13 +82,14 @@ public class UpgradesShop : MonoBehaviour
         if (!ValidateButtonTemplate()) return;
 
         // Add button functionality
-        foreach (var data in upgradeData)
+        foreach (var data in database.list)
         {
             if (!IsPurchased(data.upgradeName))
             {
                 AddButton(data);
             }
         }
+        SortButtons();
     }
 
     bool TryBuy(UpgradeButton b)
@@ -106,12 +107,13 @@ public class UpgradesShop : MonoBehaviour
         GameData data = GameDataManager.gameData;
         data.upgradesPool.Add(upgradeName);
         data.baseData.currentBits -= price;
-        b.data.effect.Apply();
 
         EventBus.GoBitsAdded(-price);
         EventBus.GoUpgradePurchase();
-
         RemoveButton(b);
+
+        // Apply effect after everything is done -- uniques might do weird things
+        b.data.effect.Apply();
 
         return true;
     }
@@ -126,6 +128,19 @@ public class UpgradesShop : MonoBehaviour
     bool IsPurchased(string upgradeName)
     {
         return GameDataManager.gameData.upgradesPool.Contains(upgradeName);
+    }
+
+    void SortButtons()
+    {
+        if (upgradeButtons == null || shopBody.childCount < 2) return;
+
+        upgradeButtons.Sort(
+            (a, b) => a.data.GetPrice().CompareTo(b.data.GetPrice()));
+
+        for (int i = 0; i < upgradeButtons.Count; ++i)
+        {
+            upgradeButtons[i].button.transform.SetSiblingIndex(i);
+        }
     }
 
     bool ValidateButtonTemplate()

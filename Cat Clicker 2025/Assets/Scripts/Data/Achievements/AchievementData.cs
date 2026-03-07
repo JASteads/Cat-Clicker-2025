@@ -17,8 +17,6 @@ public interface IAchievementEffect
 
 public abstract class AchievementEffect : ScriptableObject, IAchievementEffect
 {
-    public int targetUnitID;
-
     public abstract bool CheckCondition();
     public abstract AchievementType GetAchievementType();
 }

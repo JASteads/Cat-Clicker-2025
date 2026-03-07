@@ -11,32 +11,24 @@ public class FeverSystem
     [SerializeField] public float slowDrainTimeLeft; // To not drain the meter while actively charging
     [SerializeField] public float holdTimeLeft;
     [SerializeField] public bool isFeverTime;
-    [SerializeField] public FeverData data;
 
     public FeverSystem()
     {
         holdTimeLeft = 0;
         slowDrainTimeLeft = 0;
         isFeverTime = false;
-
-        // Test values -- Migrate to GameData later
-        data = new FeverData
-        {
-            maxCharge = 100,
-            drainAmount = 75,
-            holdTime = 3
-        };
     }
 
     public void AddCharge()
     {
+        GameData data = GameDataManager.gameData;
         float newCharge = charge + CHARGE_RATE;
         slowDrainTimeLeft = SLOW_DRAIN_TIME;
 
         // Charge up to the maximum capacity. Enter Fever Time if maxed while not in Fever Time
-        if (newCharge > data.maxCharge)
+        if (newCharge > data.feverData.maxCharge)
         {
-            charge = data.maxCharge;
+            charge = data.feverData.maxCharge;
 
             if (!isFeverTime)
             {
@@ -50,11 +42,11 @@ public class FeverSystem
         }
 
         // Reset drain timers
-        float halfHoldTime = data.holdTime / 3f;
+        float halfHoldTime = data.feverData.holdTime / 3f;
 
         if (halfHoldTime > SLOW_DRAIN_TIME)
         {
-            holdTimeLeft = isFeverTime ? data.holdTime : halfHoldTime;
+            holdTimeLeft = isFeverTime ? data.feverData.holdTime : halfHoldTime;
         }
         else
         {
@@ -86,7 +78,7 @@ public class FeverSystem
         // Fast drain logic
         if (holdTimeLeft == 0)
         {
-            drainAmount = data.drainAmount;
+            drainAmount = GameDataManager.gameData.feverData.drainAmount;
 
             // Fever Time ends when hold time expires
             if (isFeverTime)
@@ -111,7 +103,7 @@ public class FeverSystem
 }
 
 [Serializable]
-public struct FeverData
+public struct FeverSaveData
 {
     [SerializeField] public float maxCharge;
     [SerializeField] public float drainAmount;

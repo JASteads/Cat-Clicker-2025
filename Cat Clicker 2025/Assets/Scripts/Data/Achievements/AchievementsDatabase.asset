@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f227c88cd28a424d9f8b40fd66921f3, type: 3}
   m_Name: AchievementsDatabase
   m_EditorClassIdentifier: Assembly-CSharp::AchievementsDatabase
-  data: []
+  list:
+  - {fileID: 11400000, guid: 6c3dd172b017e324d950e0b1e72539b2, type: 2}
+  - {fileID: 11400000, guid: b2c7f64759e03dc4fae8481f2080f04b, type: 2}
+  - {fileID: 11400000, guid: 6c1ce0872ccbcca4ca4ecaf4efbf0963, type: 2}
+  - {fileID: 11400000, guid: 692590d968816a249b3de1636cd3f253, type: 2}
+  - {fileID: 11400000, guid: 5c471a799e23e174898879d65a636fc2, type: 2}
+  - {fileID: 11400000, guid: 2dac460c8e42a87438786d63936265b4, type: 2}
+  - {fileID: 11400000, guid: b9b3476d38e9a864195843fea32f0c96, type: 2}
+  - {fileID: 11400000, guid: f96b397624ded2d4d821aa2a16198c57, type: 2}
+  - {fileID: 11400000, guid: 43b5070ddb17d75439ae33df0e71d000, type: 2}
+  - {fileID: 11400000, guid: dd4a01e44d6012b45a08f4ba7f58cade, type: 2}
+  - {fileID: 11400000, guid: de967dc5617219141abbee84c5cd35fe, type: 2}
+  - {fileID: 11400000, guid: 3838e67d920f9aa4eb52bfd467899bb5, type: 2}
+  - {fileID: 11400000, guid: 24f5d0def6b19f74eb98328302424234, type: 2}
+  - {fileID: 11400000, guid: 1e40eec5088f3bb47ab7ea117547cbd0, type: 2}
+  - {fileID: 11400000, guid: 5cc7e95f4efeff64ebe3f8f96ef4911e, type: 2}
+  - {fileID: 11400000, guid: f0f08192e0299704b9097605d4fdd8ad, type: 2}
+  - {fileID: 11400000, guid: da2190cfe8070a048a9eedf518041efa, type: 2}
+  - {fileID: 11400000, guid: f9981be73eddd494ba75f061b98d916a, type: 2}
+  - {fileID: 11400000, guid: 09f400924b0581c4c8ada9d82bef799e, type: 2}
+  - {fileID: 11400000, guid: a7707525490561f428ab99a869b1fc63, type: 2}
+  - {fileID: 11400000, guid: 6c7b35b6a4f639147864adfef36ba75e, type: 2}
+  - {fileID: 11400000, guid: 9306d57071a3b69438905b04bb7bf447, type: 2}
+  - {fileID: 11400000, guid: 728031fffd069b547940457c3e68717b, type: 2}
+  - {fileID: 11400000, guid: e94f9675b88916d4cbadf73aea0c2350, type: 2}
+  - {fileID: 11400000, guid: 626914dec54d70e4b8dd0778fd084b7f, type: 2}

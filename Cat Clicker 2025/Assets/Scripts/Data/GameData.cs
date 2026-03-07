@@ -12,15 +12,51 @@ public class GameData
     [SerializeField] public BaseData baseData;
     [SerializeField] public SpammableSaveData[] spammablesData;
     [SerializeField] public SpecialistSaveData[] specialistData;
+    [SerializeField] public FeverSaveData feverData;
     [SerializeField] public int[] skillpoints;
     [SerializeField] public List<string> upgradesPool;
     [SerializeField] public List<string> achivementsPool;
 
     public GameData()
     {
-        baseData = new BaseData();
+        baseData = new BaseData
+        {
+            currentBits = 0,
+            totalBits = 0,
+            spamBPS = 0,
+            clickPower = 1,
+            clickPowerMulti = 1,
+            bpsToClickPowerMulti = 0
+        };
+
         spammablesData = new SpammableSaveData[SPAMMABLE_COUNT];
+        for (int i = 0; i < SPAMMABLE_COUNT; i++)
+        {
+            spammablesData[i] = new SpammableSaveData
+            {
+                owned = 0,
+                multiplier = 1
+            };
+        }
+
         specialistData = new SpecialistSaveData[SPECIALIST_COUNT];
+        for (int i = 0; i < SPECIALIST_COUNT; i++)
+        {
+            specialistData[i] = new SpecialistSaveData
+            {
+                level = 0,
+                bpsMulti = 1,
+                isOwned = false
+            };
+        }
+
+        feverData = new FeverSaveData
+        {
+            maxCharge = 100,
+            drainAmount = 75,
+            holdTime = 3
+        };
+
         skillpoints = new int[ACHIEVEMENT_CATEGORIES];
         upgradesPool = new List<string>();
         achivementsPool = new List<string>();
@@ -37,7 +73,8 @@ public class GameData
     public override string ToString()
     {
         return $"Current Bits: {baseData.currentBits.ToString()}" +
-            $"\nBPS: {baseData.spamBPS.ToString()}";
+            $"\nBPS: {baseData.spamBPS.ToString()}" +
+            $"\nClick Power: {baseData.clickPower.ToString()}";
     }
 }
 
@@ -49,21 +86,7 @@ public struct BaseData
                   spamBPS,
                   clickPower,
                   clickPowerMulti,
-                  bpsToClickPowerMulti,
-                  bpsToClickPowerPercent;
-
-    public BaseData(double currentBits = 0, double totalBits = 0, double spamBPS = 0,
-        double clickPower = 1, double clickPowerMulti = 1,
-        double bpsToClickPowerMulti = 0, double bpsToClickPowerPercent = 0)
-    {
-        this.currentBits = currentBits;
-        this.totalBits = totalBits;
-        this.spamBPS = spamBPS;
-        this.clickPower = clickPower;
-        this.clickPowerMulti = clickPowerMulti;
-        this.bpsToClickPowerMulti = bpsToClickPowerMulti;
-        this.bpsToClickPowerPercent = bpsToClickPowerPercent;
-    }
+                  bpsToClickPowerMulti;
 }
 
 [Serializable]
@@ -71,12 +94,6 @@ public struct SpammableSaveData
 {
     public int owned;
     public double multiplier;
-
-    public SpammableSaveData(int owned = 0, double multiplier = 1)
-    {
-        this.owned = owned;
-        this.multiplier = multiplier;
-    }
 }
 
 [Serializable]
@@ -86,13 +103,6 @@ public struct SpecialistSaveData
     public double bpsMulti;
     public bool isOwned;
 
-    public SpecialistSaveData(
-        int level = 0, double bpsMulti = 1, bool isOwned = false)
-    {
-        this.level = level;
-        this.bpsMulti = bpsMulti;
-        this.isOwned = isOwned;
-    }
 }
 
 [Serializable]
@@ -102,13 +112,4 @@ public struct AchievementSkillpoints
     public int infinityPoints;
     public int asterismPoints;
     public int anomalyPoints;
-
-    public AchievementSkillpoints(int innovationPoints = 0,
-        int infinityPoints = 0, int asterismPoints = 0, int anomalyPoints = 0)
-    {
-        this.innovationPoints = innovationPoints;
-        this.infinityPoints = infinityPoints;
-        this.asterismPoints = asterismPoints;
-        this.anomalyPoints = anomalyPoints;
-    }
 }

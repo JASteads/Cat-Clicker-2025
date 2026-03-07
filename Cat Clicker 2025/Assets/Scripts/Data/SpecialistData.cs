@@ -8,7 +8,7 @@ public class SpecialistData : ScriptableObject
     public string specialistDescription = "It's very special";
     public double basePrice = 4311;
     public double levelUpBasePrice = 9001; // Should be more expensive than base
-    public float priceExponent = 1.2f;
+    public float priceExponent = 1.38f;
     public int maxLevel = 30;
     public double bpsMultiPerLevel = 1.1; // +10% per level sounds fun
 

@@ -75,6 +75,12 @@ public class StartScreenManager : MonoBehaviour
         float time = 0f;
 
         dimmingScreen.gameObject.SetActive(true);
+
+        if (!inReverse)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
         while (time < duration)
         {
             float waveMultiplier = time / duration;
@@ -90,7 +96,11 @@ public class StartScreenManager : MonoBehaviour
         if (!inReverse)
         {
             dimmingScreen.gameObject.SetActive(false);
-        }   
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     IEnumerator TitleCardDropRoutine(float waitDuration, float appearDuration)

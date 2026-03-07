@@ -46,9 +46,13 @@ public class ClickHandler : MonoBehaviour
     
     void HandleClick()
     {
-        double gains = GameDataManager.gameData.baseData.clickPower;
-        GameDataManager.gameData.baseData.currentBits += gains;
+        GameData data = GameDataManager.gameData;
 
+        double gains = 
+            data.baseData.clickPower * data.baseData.clickPowerMulti
+            * (1 + data.baseData.bpsToClickPowerMulti);
+
+        GameDataManager.gameData.baseData.currentBits += gains;
         EventBus.GoBitsAdded(gains);
     }
 }

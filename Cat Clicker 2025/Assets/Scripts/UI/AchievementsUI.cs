@@ -31,17 +31,17 @@ public class AchievementsUI : MonoBehaviour
         EventBus.OnAchievement += TallyAchievement;
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         EventBus.OnAchievement -= TallyAchievement;
     }
 
     void TallyAchievement(AchievementData a)
     {
-        int type = (int)a.effect.GetAchievementType();
-
-        ++tallyArray[type];
-        UpdateCategoryButton(a.effect.GetAchievementType());
+        AchievementType type = a.effect.GetAchievementType();
+        
+        ++tallyArray[(int)type];
+        UpdateCategoryButton(type);
     }
 
     void ConfigUI()
@@ -60,12 +60,15 @@ public class AchievementsUI : MonoBehaviour
 
             if (data.achivementsPool.Contains(a.achievementName))
             {
+                Debug.Log($"Achievement '{a.achievementName}' is already unlocked");
                 TallyAchievement(a);
                 a.isUnlocked = true;
             }
         }
 
         // Configure category buttons
+        Image[] categoryButtonImages = categoryMenu.GetComponentsInChildren<Image>();
+
         for (int i = 0; i < categoryButtons.Length; ++i)
         {
             CategoryButton c = categoryButtons[i];
@@ -73,9 +76,16 @@ public class AchievementsUI : MonoBehaviour
 
             c.button.onClick.AddListener(() => ShowCategory(type));
 
-            c.bodyColor = c.button.transform.GetComponent<Image>().color;
-            c.textColor = 
-                c.title.transform.GetComponent<TextMeshProUGUI>().color;
+            c.bodyColor = categoryButtonImages[i].color;
+            c.textColor = categoryButtonImages[i]
+                .GetComponentInChildren<TextMeshProUGUI>().color;
+
+            // Disable Asterism for now
+            if (type == AchievementType.ASTERISM)
+            {
+                c.button.interactable = false;
+            }
+
             categoryButtons[i] = c;
         }
 
@@ -117,6 +127,7 @@ public class AchievementsUI : MonoBehaviour
             if (a.effect.GetAchievementType() == type)
             {
                 UpdateBlock(blockNum, a);
+                blocks[blockNum].block.transform.gameObject.SetActive(true);
                 ++blockNum;
             }
         }
@@ -124,7 +135,7 @@ public class AchievementsUI : MonoBehaviour
         // Hide the rest of the blocks
         for (int i = blockNum; i < blocks.Count; ++i)
         {
-            blocks[i].icon.transform.parent.gameObject.SetActive(false);
+            blocks[i].block.transform.gameObject.SetActive(false);
         }
     }
 
@@ -161,7 +172,7 @@ public class AchievementsUI : MonoBehaviour
 
         AchievementBlock newBlock = new AchievementBlock
         {
-            icon = newBlockObj.GetComponentInChildren<Image>(),
+            icon = nameObject.GetComponentInChildren<Image>(),
             block = newBlockObj.GetComponent<Image>(),
             textBody = nameObject.GetComponent<TextMeshProUGUI>(),
             skillpointsText = nameObject.Find(
@@ -174,14 +185,28 @@ public class AchievementsUI : MonoBehaviour
     void UpdateBlock(int index, AchievementData a)
     {
         AchievementBlock b = blocks[index];
+        int effectType = (int)a.effect.GetAchievementType();
 
-        b.textBody.text = $"{a.achievementName}\n" +
+        if (a.isUnlocked)
+        {
+            b.icon.enabled = true;
+            b.textBody.text = $"{a.achievementName}\n" +
             $"<size=24>{a.desc}</size>";
-        b.skillpointsText.text = a.skillPoints.ToString();
+            b.textBody.color = categoryButtons[effectType].textColor;
+            b.skillpointsText.text = a.skillPoints.ToString();
 
-        // Recolor the block (and icon for now)
-        b.block.color = b.icon.color =
-            categoryButtons[(int)a.effect.GetAchievementType()].bodyColor;
+            // Recolor the block (and icon for now)
+            b.block.color = b.icon.color =
+                categoryButtons[(int)a.effect.GetAchievementType()].bodyColor;
+        }
+        else
+        {
+            b.textBody.text = "???\n<size=24>???</size>";
+            b.skillpointsText.text = "";
+            b.icon.enabled = false;
+            b.block.color = Color.darkGray;
+            b.textBody.color = Color.gray;
+        }
     }
 
     int GetMaxCount()

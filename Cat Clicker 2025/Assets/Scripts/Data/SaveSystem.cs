@@ -8,7 +8,7 @@ public static class SaveSystem
         Application.persistentDataPath + "/Saves/";
     const string SAVE_KEY = "ProfileA"; // Test save key
     const int SPICY_SAUCE = 052852;
-    const bool ENCRYPT_DATA = false; // SET THIS TO TRUE ON RELEASE
+    const bool ENCRYPT_DATA = true; // SET THIS TO TRUE ON RELEASE
     const bool PREFS_METHOD = false;
     public static string GetFilePath() => savesFolder + SAVE_KEY + ".nimmy";
 

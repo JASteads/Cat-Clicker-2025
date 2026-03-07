@@ -67,6 +67,18 @@ public class GameDataManager : MonoBehaviour
         Application.Quit();
     }
 
+
+    // Hard resets the game's data
+    [ContextMenu("Format Save (Hard Reset)")]
+    public void HardReset()
+    {
+        gameDataLocal = new GameData();
+        Debug.Log(gameData.ToString());
+        gameData = gameDataLocal;
+        SaveSystem.SaveGame(gameDataLocal);
+        SceneManager.LoadScene("Main Game", LoadSceneMode.Single);
+    }
+
     public static void SaveAndQuitGame()
     {
         SaveSystem.SaveGame(gameData);

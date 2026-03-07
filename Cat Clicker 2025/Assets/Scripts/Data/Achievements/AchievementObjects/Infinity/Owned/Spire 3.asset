@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f1d6d25d408f14cb9bc68b824b8a40, type: 3}
-  m_Name: Bit Cat BPS Effect #1
-  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSimpleBPS
-  targetUnitID: 0
-  multiplier: 2
+  m_Script: {fileID: 11500000, guid: c7cf0b5112bbb4340ba339ebe75cfd24, type: 3}
+  m_Name: Spire 3
+  m_EditorClassIdentifier: Assembly-CSharp::AchievementInfinity
+  tracker: 0
+  targetUnitID: 5
+  targetValue: 50

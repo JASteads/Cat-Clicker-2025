@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AchievementInfinity", menuName = "CatClicker/Achievement/Effect/Infinity")]
 public class AchievementInfinity : AchievementEffect // Stat-specific achievements
 {
-    public SpammableSaveData target;
     public InfnityTracking tracker;
+    public int targetUnitID;
     public int targetValue;
 
     public override bool CheckCondition()
@@ -14,7 +14,7 @@ public class AchievementInfinity : AchievementEffect // Stat-specific achievemen
         switch (tracker)
         {
             case InfnityTracking.OWNED:
-                return target.owned >= targetValue;
+                return data.spammablesData[targetUnitID].owned >= targetValue;
             case InfnityTracking.TOTAL_BITS:
                 return data.baseData.totalBits >= targetValue;
             case InfnityTracking.TOTAL_BPS:

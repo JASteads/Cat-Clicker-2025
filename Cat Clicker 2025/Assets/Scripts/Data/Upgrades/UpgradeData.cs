@@ -23,8 +23,6 @@ public class UpgradeData : ScriptableObject
 
 public abstract class UpgradeEffect : ScriptableObject, IUpgradeEffect
 {
-    public int targetUnitID;
-
     public abstract void Apply();
     public abstract string GetEffectType();
 }

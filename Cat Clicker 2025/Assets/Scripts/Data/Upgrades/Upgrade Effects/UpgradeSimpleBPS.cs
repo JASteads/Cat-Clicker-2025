@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UpgradeSimpleBPS", menuName = "CatClicker/Upgrade/Effect/Simple BPS")]
 public class UpgradeSimpleBPS : UpgradeEffect
 {
+    public int targetUnitID;
     public float multiplier;
 
     public override void Apply()

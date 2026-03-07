@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class AchievementsManager
 {
@@ -8,23 +9,24 @@ public class AchievementsManager
     {
         this.database = database;
 
-        List<AchievementData> unlocked = database.list.FindAll(
-            (a) => GameDataManager.gameData.achivementsPool
-            .Contains(a.achievementName));
+        //List<AchievementData> unlocked = database.list.FindAll(
+        //    (a) => GameDataManager.gameData.achivementsPool
+        //    .Contains(a.achievementName));
 
-        // Set all achievements to show that they're unlocked based on save
-        foreach (var a in unlocked)
+        foreach (var a in database.list)
         {
-            a.isUnlocked = true;
+            a.isUnlocked = GameDataManager.gameData.achivementsPool
+                .Contains(a.achievementName);
         }
 
         EventBus.OnSpecialistMilestone += CheckInnovation;
         EventBus.OnSlowUpdate += CheckInfinity;
+        EventBus.OnForceAchievement += TryForceUnlock;
     }
 
     void CheckInfinity()
     {
-        CheckAchievementType(AchievementType.INFINITY);   
+        CheckAchievementType(AchievementType.INFINITY);
     }
 
     void CheckInnovation(int id, int level)
@@ -54,10 +56,27 @@ public class AchievementsManager
         }
     }
 
+    void TryForceUnlock(string name)
+    {
+        AchievementData target = 
+            database.list.Find(a => a.achievementName == name);
+
+        if (target == null)
+        {
+            UnityEngine.Debug.LogError($"{name} is not a name for an existing achievement");
+        }
+        else
+        {
+            UnlockAchievement(target);
+        }
+
+    }
+
     public void StopSystem()
     {
         EventBus.OnSpecialistMilestone -= CheckInnovation;
         EventBus.OnSlowUpdate -= CheckInfinity;
+        EventBus.OnForceAchievement -= TryForceUnlock;
     }
 
     public void UnlockAchievement(AchievementData a)

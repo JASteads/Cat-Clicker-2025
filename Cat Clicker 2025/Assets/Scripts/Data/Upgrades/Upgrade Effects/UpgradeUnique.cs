@@ -9,7 +9,7 @@ public class UpgradeUnique : UpgradeEffect
 
     public override void Apply()
     {
-        e.Invoke();
+        e?.Invoke();
     }
 
     public override string GetEffectType()

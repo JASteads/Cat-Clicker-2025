@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59276d72af846594facd37a3e221de63, type: 3}
-  m_Name: Upgrade #1
+  m_Name: Upgrade 3B
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  upgradeName: Bit Cat BPS #1
-  desc: Doubles Bit Cat BPS
-  price: 100
-  effect: {fileID: 11400000, guid: 005e8452b203af34092438137418c5f9, type: 2}
+  upgradeName: Magic Lad BPS #2
+  desc: Magic Lad's output is doubled.
+  price: 100000
+  effect: {fileID: 11400000, guid: 481ab57f38c429845b680d2d69029fca, type: 2}
